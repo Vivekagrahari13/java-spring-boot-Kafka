@@ -20,4 +20,16 @@ public class LocationController {
         kafkaService.updateLocation("(" + Math.random() * 100 + ", " + Math.random() * 100 + ")");
         return new ResponseEntity<>(Map.of("message", "Location Updated"), HttpStatus.OK);
     }
+
+    @PostMapping("/weather/update")
+    public ResponseEntity<?> updateWeather() {
+        kafkaService.updateWeather("Weather: " + Math.random() * 100 + "°C");
+        return new ResponseEntity<>(Map.of("message", "Weather Updated"), HttpStatus.OK);
+    }
+
+    @PostMapping("/notification/send")
+    public ResponseEntity<?> sendNotification() {
+        kafkaService.sendNotification("Notification: " + UUID.randomUUID().toString());
+        return new ResponseEntity<>(Map.of("message", "Notification Sent"), HttpStatus.OK);
+    }
 }
